@@ -14,40 +14,40 @@ This project provides a server for processing audio files, leveraging the Whispe
 
 1. **Clone the repository:**
 
-   ````bash
-   git clone https://github.com/your-username/meet-transcript.git   ```
+   ```bash
+   git clone https://github.com/your-username/meet-transcript.git
 
-   ````
+   ```
 
 2. **Install dependencies:**
 
-   ````bash
+   ```bash
    cd meet-transcript
-   npm install   ```
+   npm install
 
-   ````
+   ```
 
 3. **Configuration:**
 
    Create a `.env` file in the root directory and add the following environment variables:
 
-   ````
+   ```
    WHISPER_API_KEY=<your_whisper_api_key>
    PYANNOTE_API_KEY=<your_pyannote_api_key>
    NGROK_URL=<your_ngrok_url>
-   PORT=<your_desired_port> (optional, defaults to 3000)   ```
+   PORT=<your_desired_port> (optional, defaults to 3000)
 
    - `WHISPER_API_KEY`: Your API key for the Whisper API.
    - `PYANNOTE_API_KEY`: Your API key for the Pyannote API.
    - `NGROK_URL`: Your ngrok URL for exposing the uploads directory to Pyannote.  Make sure your ngrok tunnel points to the `uploads` directory.  For example, if your project is running locally on port 3000, you would run: `ngrok http 3000 -subdomain=your-subdomain --host-header="localhost:3000"` and then set `NGROK_URL` to `https://your-subdomain.ngrok.io`.
    - `PORT`: The port you want the server to run on (optional).
 
-   ````
+   ```
 
 4. **Start the server:**
-   ````bash
-   npm start   ```
-   ````
+   ```bash
+   npm start
+   ```
 
 ## Usage
 
@@ -55,15 +55,14 @@ This project provides a server for processing audio files, leveraging the Whispe
 
 2. **Send Request:** Send a POST request to `/process-audio` with the filename in the request body:
 
-   ````json
+   ```json
    {
      "filename": "your_audio_file.mp3"
-   }   ```
-
-   ````
+   }
+   ```
 
 3. **Receive Response:** The server will respond with a JSON object containing the transcribed text mapped to speakers:
-   ````json
+   ```json
    {
      "success": true,
      "result": [
@@ -80,8 +79,8 @@ This project provides a server for processing audio files, leveraging the Whispe
          "end": 5.0
        }
      ]
-   }   ```
-   ````
+   }
+   ```
 
 ## Dependencies
 
