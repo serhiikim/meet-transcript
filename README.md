@@ -32,12 +32,12 @@ This project provides a server for processing audio files, leveraging the Whispe
    Create a `.env` file in the root directory and add the following environment variables:
 
    ```
-   WHISPER_API_KEY=<your_whisper_api_key>
+   OPENAI_API_KEY=<your_openai_api_key>
    PYANNOTE_API_KEY=<your_pyannote_api_key>
    NGROK_URL=<your_ngrok_url>
    PORT=<your_desired_port> (optional, defaults to 3000)
 
-   - `WHISPER_API_KEY`: Your API key for the Whisper API.
+   - `OPENAI_API_KEY`: Your API key for the OPENAI API.
    - `PYANNOTE_API_KEY`: Your API key for the Pyannote API.
    - `NGROK_URL`: Your ngrok URL for exposing the uploads directory to Pyannote.  Make sure your ngrok tunnel points to the `uploads` directory.  For example, if your project is running locally on port 3000, you would run: `ngrok http 3000 -subdomain=your-subdomain --host-header="localhost:3000"` and then set `NGROK_URL` to `https://your-subdomain.ngrok.io`.
    - `PORT`: The port you want the server to run on (optional).

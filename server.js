@@ -99,7 +99,7 @@ async function transcribeWithWhisper(filePath) {
           {
             headers: {
               ...form.getHeaders(),
-              Authorization: `Bearer ${process.env.WHISPER_API_KEY}`,
+              Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
             },
           }
         );
@@ -151,7 +151,7 @@ async function transcribeWithWhisper(filePath) {
         {
           headers: {
             ...form.getHeaders(),
-            Authorization: `Bearer ${process.env.WHISPER_API_KEY}`,
+            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
           },
         }
       );
