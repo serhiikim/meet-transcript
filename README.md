@@ -9,13 +9,15 @@ This project provides a server for processing audio files, leveraging the Whispe
 - **Multi-format Support:** Accepts common audio formats like MP3, WAV, OGG, M4A, WEBM, and MP4.
 - **Automatic Conversion:** Converts non-WAV audio files to WAV format before processing.
 - **Combined Output:** Returns a JSON object containing the transcript mapped to identified speakers.
+- **Combine Speeches:** Combines consecutive speech segments from the same speaker into a single segment.
+- **Interview Analysis:** Analyzes interview transcripts to provide insights into the candidate's skills, motivation, and communication level.
 
 ## Setup
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/meet-transcript.git
+   git clone https://github.com/serhiikim/meet-transcript.git
 
    ```
 
@@ -51,6 +53,8 @@ This project provides a server for processing audio files, leveraging the Whispe
 
 ## Usage
 
+### 1. Process Audio
+
 1. **Upload Audio:** Upload your audio file to the `uploads` directory. You can do this manually, or through a file upload mechanism if you implement one in a frontend application.
 
 2. **Send Request:** Send a POST request to `/process-audio` with the filename in the request body:
@@ -82,17 +86,55 @@ This project provides a server for processing audio files, leveraging the Whispe
    }
    ```
 
+### 2. Combine Speeches
+
+1. **Send Request:** Send a POST request to `/combine-speeches` with the filename of a processed transcript in the request body. The filename should be the name of a file in the `results` directory.
+
+   ```json
+   {
+     "filename": "your_audio_file_timestamp.json"
+   }
+   ```
+
+2.  **Receive Response:** The server will respond with a JSON object indicating success and the name of the new combined file in the `results` directory.
+
+    ```json
+    {
+      "success": true,
+      "message": "Speeches combined successfully",
+      "outputFile": "your_audio_file_timestamp_combined.json"
+    }
+    ```
+
+### 3. Analyze Interview
+
+1.  **Send Request:** Send a POST request to `/analyze-interview` with the filename of a processed transcript in the request body. The filename should be the name of a file in the `results` directory.
+
+    ```json
+    {
+      "filename": "your_audio_file_timestamp.json"
+    }
+    ```
+
+2.  **Receive Response:** The server will respond with a JSON object indicating success, the analysis result, and the name of the updated file in the `results` directory.
+
+    ```json
+    {
+      "success": true,
+      "analysis": "Analysis of the interview...",
+      "updatedFile": "your_audio_file_timestamp.json"
+    }
+    ```
+
 ## Dependencies
 
-- `@google-cloud/speech`: Although listed in `package.json`, it is not used in the current code. Consider removing it.
 - `axios`: For making HTTP requests.
 - `dotenv`: For loading environment variables.
 - `express`: For creating the server.
 - `ffmpeg`: For audio conversion (ensure it's installed on your system).
 - `form-data`: For sending form data with requests.
 - `fs`: For file system operations.
-- `multer`: Although listed in `package.json`, it is not used in the current code. Consider removing it.
-- `raw-body`: Although listed in `package.json`, it is not used in the current code. Consider removing it.
+- `openai`: For using the OpenAI API.
 
 ## Note
 
